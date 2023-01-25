@@ -1,3 +1,33 @@
+<?php
+if(isset($_POST['submit']))
+{
+/*
+print_r($_POST['nome']);
+print_r($_POST['email']);
+print_r($_POST['telefone']);
+print_r($_POST['genero']);
+print_r($_POST['data_nascimento']);
+print_r($_POST['cidade']);
+print_r($_POST['estado']);
+print_r($_POST['endereco']);
+*/
+
+$nome=$_POST['nome'];
+$email=$_POST['email'];
+$telefone=$_POST['telefone'];
+$genero=$_POST['genero'];
+$data_nascimento=$_POST['data_nascimento'];
+$cidade=$_POST['cidade'];
+$estado=$_POST['estado'];
+$endereco=$_POST['endereco'];
+
+include_once ('config.php');
+
+$resultado = mysqli_query ($conexao,"INSERT INTO usuarios(nome,email,telefone,genero,data_nascimento,cidade,estado,endereco)
+VALUES ('$nome','$email','$telefone','$genero','$data_nascimento','$cidade','$estado','$endereco')");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -41,8 +71,8 @@
                 <input type="radio" name="genero" id="outro" value="outro" required>
                 <label for="outro">Outro</label>
                 <br><br>
-                <label for="aniversario"><b>Data de Nascimento:</b></label>
-                    <input type="date" name="aniversario" id="aniversario" required>
+                <label for="data_nascimento"><b>Data de Nascimento:</b></label>
+                    <input type="date" name="data_nascimento" id="data_nascimento" required>
                 <br><br>
                 <div class="inputBox">
                     <input type="text" name="cidade" id="cidade" class="inputUser" required>
