@@ -1,7 +1,6 @@
 <?php
-if(isset($_POST['submit']))
-{
-/*
+if (isset($_POST['submit'])) {
+    /*
 print_r($_POST['nome']);
 print_r($_POST['email']);
 print_r($_POST['telefone']);
@@ -12,19 +11,20 @@ print_r($_POST['estado']);
 print_r($_POST['endereco']);
 */
 
-$nome=$_POST['nome'];
-$email=$_POST['email'];
-$telefone=$_POST['telefone'];
-$genero=$_POST['genero'];
-$data_nascimento=$_POST['data_nascimento'];
-$cidade=$_POST['cidade'];
-$estado=$_POST['estado'];
-$endereco=$_POST['endereco'];
+    $nome = $_POST['nome'];
+    $senha = $_POST['senha'];
+    $email = $_POST['email'];
+    $telefone = $_POST['telefone'];
+    $genero = $_POST['genero'];
+    $data_nascimento = $_POST['data_nascimento'];
+    $cidade = $_POST['cidade'];
+    $estado = $_POST['estado'];
+    $endereco = $_POST['endereco'];
 
-include_once ('config.php');
+    include_once('config.php');
 
-$resultado = mysqli_query ($conexao,"INSERT INTO usuarios(nome,email,telefone,genero,data_nascimento,cidade,estado,endereco)
-VALUES ('$nome','$email','$telefone','$genero','$data_nascimento','$cidade','$estado','$endereco')");
+    $resultado = mysqli_query($conexao, "INSERT INTO usuarios(nome,senha,email,telefone,genero,data_nascimento,cidade,estado,endereco)
+VALUES ('$nome','$senha','$email','$telefone','$genero','$data_nascimento','$cidade','$estado','$endereco')");
 }
 
 ?>
@@ -41,14 +41,20 @@ VALUES ('$nome','$email','$telefone','$genero','$data_nascimento','$cidade','$es
 </head>
 
 <body>
+    <a href="home.php">Voltar</a>
     <div class="box">
-        <form action="" method="post">
+        <form action="formulario.php" method="post">
             <fieldset>
                 <legend><b>Formulário de clientes</b></legend>
                 <br>
                 <div class="inputBox">
                     <input type="text" name="nome" id="nome" class="inputUser" required>
                     <label for="nome" class="labelInput">Nome completo</label>
+                </div>
+                <br><br>
+                <div class="inputBox">
+                    <input type="password" name="senha" id="senha" class="inputUser" required>
+                    <label for="senha" class="labelInput">Senha</label>
                 </div>
                 <br><br>
                 <div class="inputBox">
@@ -72,11 +78,11 @@ VALUES ('$nome','$email','$telefone','$genero','$data_nascimento','$cidade','$es
                 <label for="outro">Outro</label>
                 <br><br>
                 <label for="data_nascimento"><b>Data de Nascimento:</b></label>
-                    <input type="date" name="data_nascimento" id="data_nascimento" required>
+                <input type="date" name="data_nascimento" id="data_nascimento" required>
                 <br><br>
                 <div class="inputBox">
                     <input type="text" name="cidade" id="cidade" class="inputUser" required>
-                    <label for="cidade"  class="labelInput">Cidade</label>
+                    <label for="cidade" class="labelInput">Cidade</label>
                 </div>
                 <br><br>
                 <div class="inputBox">

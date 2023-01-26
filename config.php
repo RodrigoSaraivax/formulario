@@ -6,6 +6,8 @@
 
     $conexao = new mysqli($dbHost,$dbUsername,$dbPassword,$dbName);
 
+//É um teste para ver se funcionou
+/*
     if ($conexao->connect_errno)
     {
         echo "Erro";
@@ -14,4 +16,5 @@
     {
         echo "Conexão efetuada com sucesso";
     }
+*/
 ?>

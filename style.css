@@ -1,6 +1,6 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-image: linear-gradient(to right, rgb(20,147,220), rgb(17,54,71));
+    background-image: linear-gradient(to right, rgb(20, 147, 220), rgb(17, 54, 71));
 }
 
 .box {
@@ -9,7 +9,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0, 0, 0, 0.6);
     padding: 15px;
     border-radius: 15px;
     width: 20%;
@@ -50,8 +50,8 @@ legend {
     transition: .5s;
 }
 
-.inputUser:focus ~ .labelInput,
-.inputUser:valid ~ .labelInput {
+.inputUser:focus~.labelInput,
+.inputUser:valid~.labelInput {
     top: -20px;
     font-size: 12px;
     color: dodgerblue;
@@ -66,7 +66,7 @@ legend {
 }
 
 #submit {
-    background-image: linear-gradient(to right, rgb(0,92,197), rgb(90,20,220));
+    background-image: linear-gradient(to right, rgb(0, 92, 197), rgb(90, 20, 220));
     width: 100%;
     border: none;
     padding: 15px;
@@ -76,6 +76,6 @@ legend {
     cursor: pointer;
 }
 
-#submit:hover{
-    background-image: linear-gradient(to right, rgb(0,80,172), rgb(80,19,195));
+#submit:hover {
+    background-image: linear-gradient(to right, rgb(0, 80, 172), rgb(80, 19, 195));
 }
