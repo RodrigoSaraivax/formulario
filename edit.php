@@ -1,30 +1,32 @@
 <?php
-if (isset($_POST['submit'])) {
-    /*
-print_r($_POST['nome']);
-print_r($_POST['email']);
-print_r($_POST['telefone']);
-print_r($_POST['genero']);
-print_r($_POST['data_nascimento']);
-print_r($_POST['cidade']);
-print_r($_POST['estado']);
-print_r($_POST['endereco']);
-*/
-
-    $nome = $_POST['nome'];
-    $senha = $_POST['senha'];
-    $email = $_POST['email'];
-    $telefone = $_POST['telefone'];
-    $genero = $_POST['genero'];
-    $data_nascimento = $_POST['data_nascimento'];
-    $cidade = $_POST['cidade'];
-    $estado = $_POST['estado'];
-    $endereco = $_POST['endereco'];
+if (!empty($_GET['id'])) {
 
     include_once('config.php');
 
-    $resultado = mysqli_query($conexao, "INSERT INTO usuarios(nome,senha,email,telefone,genero,data_nascimento,cidade,estado,endereco)
-VALUES ('$nome','$senha','$email','$telefone','$genero','$data_nascimento','$cidade','$estado','$endereco')");
+    $id = $_GET['id'];
+
+    $sqlSelect = "SELECT * FROM usuarios WHERE id=$id";
+
+    $result = $conexao->query($sqlSelect);
+
+    if ($result->num_rows > 0) {
+
+        while ($user_data = mysqli_fetch_assoc($result)) {
+            $nome = $user_data['nome'];
+            $senha = $user_data['senha'];
+            $email = $user_data['email'];
+            $telefone = $user_data['telefone'];
+            $genero = $user_data['genero'];
+            $data_nascimento = $user_data['data_nascimento'];
+            $cidade = $user_data['cidade'];
+            $estado = $user_data['estado'];
+            $endereco = $user_data['endereco'];
+        }
+    } else {
+        header('Location:sistema.php');
+    }
+} else {
+    header('Location:sistema.php');
 }
 
 ?>
@@ -105,7 +107,7 @@ VALUES ('$nome','$senha','$email','$telefone','$genero','$data_nascimento','$cid
             font-size: 15px;
         }
 
-        #submit {
+        #update {
             background-image: linear-gradient(to right, rgb(0, 92, 197), rgb(90, 20, 220));
             width: 100%;
             border: none;
@@ -116,68 +118,69 @@ VALUES ('$nome','$senha','$email','$telefone','$genero','$data_nascimento','$cid
             cursor: pointer;
         }
 
-        #submit:hover {
+        #update:hover {
             background-image: linear-gradient(to right, rgb(0, 80, 172), rgb(80, 19, 195));
         }
     </style>
 </head>
 
 <body>
-    <a href="home.php">Voltar</a>
+    <a href="sistema.php">Voltar</a>
     <div class="box">
-        <form action="formulario.php" method="post">
+        <form action="saveEdit.php" method="post">
             <fieldset>
                 <legend><b>Formulário de clientes</b></legend>
                 <br>
                 <div class="inputBox">
-                    <input type="text" name="nome" id="nome" class="inputUser" required>
+                    <input type="text" name="nome" id="nome" class="inputUser" value="<?= $nome ?>" required>
                     <label for="nome" class="labelInput">Nome completo</label>
                 </div>
                 <br><br>
                 <div class="inputBox">
-                    <input type="password" name="senha" id="senha" class="inputUser" required>
+                    <input type="text" name="senha" id="senha" class="inputUser" value="<?= $senha ?>" required>
                     <label for="senha" class="labelInput">Senha</label>
                 </div>
                 <br><br>
                 <div class="inputBox">
-                    <input type="text" name="email" id="email" class="inputUser" required>
+                    <input type="text" name="email" id="email" class="inputUser" value="<?= $email ?>" required>
                     <label for="email" class="labelInput">Email</label>
                 </div>
                 <br><br>
                 <div class="inputBox">
-                    <input type="tel" name="telefone" id="telefone" class="inputUser" required>
+                    <input type="tel" name="telefone" id="telefone" class="inputUser" value="<?= $telefone ?>" required>
                     <label for="telefone" class="labelInput">Telefone</label>
                 </div>
                 <br>
                 <p><b>Genero:</b></p>
-                <input type="radio" name="genero" id="masculino" value="masculino" required>
+                <input type="radio" name="genero" id="masculino" value="masculino" <?= $genero == 'masculino' ? 'checked' : '' ?> required>
                 <label for="masculino">Masculino</label>
                 <br>
-                <input type="radio" name="genero" id="feminino" value="feminino" required>
+                <input type="radio" name="genero" id="feminino" value="feminino" <?= $genero == 'feminino' ? 'checked' : '' ?> required>
                 <label for="feminino">Feminino</label>
                 <br>
-                <input type="radio" name="genero" id="outro" value="outro" required>
+                <input type="radio" name="genero" id="outro" value="outro" <?= $genero == 'outro' ? 'checked' : '' ?> required>
                 <label for="outro">Outro</label>
                 <br><br>
                 <label for="data_nascimento"><b>Data de Nascimento:</b></label>
-                <input type="date" name="data_nascimento" id="data_nascimento" required>
+                <input type="date" name="data_nascimento" id="data_nascimento" value="<?= $data_nascimento ?>" required>
                 <br><br>
                 <div class="inputBox">
-                    <input type="text" name="cidade" id="cidade" class="inputUser" required>
+                    <input type="text" name="cidade" id="cidade" class="inputUser" value="<?= $cidade ?>" required>
                     <label for="cidade" class="labelInput">Cidade</label>
                 </div>
                 <br><br>
                 <div class="inputBox">
-                    <input type="text" name="estado" id="estado" class="inputUser" required>
+                    <input type="text" name="estado" id="estado" class="inputUser" value="<?= $estado ?>" required>
                     <label for="estado" class="labelInput">Estado</label>
                 </div>
                 <br><br>
                 <div class="inputBox">
-                    <input type="text" name="endereco" id="endereco" class="inputUser" required>
+                    <input type="text" name="endereco" id="endereco" class="inputUser" value="<?= $endereco ?>" required>
                     <label for="endereco" class="labelInput">Endereco</label>
                 </div>
                 <br><br>
-                <input type="submit" name="submit" id="submit">
+                <input type="hidden" name=id value="<?= $id ?>">
+                <input type="submit" name="update" id="update" value="Salvar">
             </fieldset>
         </form>
     </div>
